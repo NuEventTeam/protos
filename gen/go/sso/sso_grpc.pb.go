@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type AuthClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	SendOTP(ctx context.Context, in *SendOTPRequest, opts ...grpc.CallOption) (*SendOTPResponse, error)
+	ConfirmOTP(ctx context.Context, in *OTPConfirmationRequest, opts ...grpc.CallOption) (*OTPConfirmationResponse, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
 }
 
@@ -53,6 +55,24 @@ func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.C
 	return out, nil
 }
 
+func (c *authClient) SendOTP(ctx context.Context, in *SendOTPRequest, opts ...grpc.CallOption) (*SendOTPResponse, error) {
+	out := new(SendOTPResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/SendOTP", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) ConfirmOTP(ctx context.Context, in *OTPConfirmationRequest, opts ...grpc.CallOption) (*OTPConfirmationResponse, error) {
+	out := new(OTPConfirmationResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/ConfirmOTP", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
 	out := new(ResetPasswordResponse)
 	err := c.cc.Invoke(ctx, "/auth.Auth/ResetPassword", in, out, opts...)
@@ -68,6 +88,8 @@ func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest
 type AuthServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	SendOTP(context.Context, *SendOTPRequest) (*SendOTPResponse, error)
+	ConfirmOTP(context.Context, *OTPConfirmationRequest) (*OTPConfirmationResponse, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
@@ -81,6 +103,12 @@ func (UnimplementedAuthServer) Register(context.Context, *RegisterRequest) (*Reg
 }
 func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedAuthServer) SendOTP(context.Context, *SendOTPRequest) (*SendOTPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendOTP not implemented")
+}
+func (UnimplementedAuthServer) ConfirmOTP(context.Context, *OTPConfirmationRequest) (*OTPConfirmationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmOTP not implemented")
 }
 func (UnimplementedAuthServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
@@ -134,6 +162,42 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_SendOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendOTPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).SendOTP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.Auth/SendOTP",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).SendOTP(ctx, req.(*SendOTPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_ConfirmOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OTPConfirmationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ConfirmOTP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.Auth/ConfirmOTP",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ConfirmOTP(ctx, req.(*OTPConfirmationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ResetPasswordRequest)
 	if err := dec(in); err != nil {
@@ -166,6 +230,14 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _Auth_Login_Handler,
+		},
+		{
+			MethodName: "SendOTP",
+			Handler:    _Auth_SendOTP_Handler,
+		},
+		{
+			MethodName: "ConfirmOTP",
+			Handler:    _Auth_ConfirmOTP_Handler,
 		},
 		{
 			MethodName: "ResetPassword",

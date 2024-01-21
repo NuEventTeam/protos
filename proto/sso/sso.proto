@@ -4,6 +4,11 @@ package auth;
 
 option go_package = "binsabit.sso.v1;sso";
 
+message Token {
+  string AccessToken = 1;
+  string RefreshToken = 2;
+}
+
 message RegisterRequest {
   string phone = 1;
   string password = 2;
@@ -11,7 +16,9 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
-  int64 user_id = 1;
+  bool ok = 1;
+  string message = 2;
+  Token token = 3;
 }
 
 message LoginRequest {
@@ -20,7 +27,9 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  string token = 1;
+  bool ok =1;
+  string message =2;
+  Token token = 3;
 }
 
 message SendOTPRequest {
@@ -28,11 +37,14 @@ message SendOTPRequest {
 }
 message SendOTPResponse{
   bool ok = 1;
+  string token = 2;
+  string message = 3;
 }
 
 message OTPConfirmationRequest{
   string phone = 1;
   string otp = 2;
+  string token = 3;
 }
 
 message OTPConfirmationResponse{
@@ -46,7 +58,8 @@ message ResetPasswordRequest{
 }
 
 message ResetPasswordResponse{
- string token = 1;
+ bool ok = 1;
+ string message = 2;
 }
 
 

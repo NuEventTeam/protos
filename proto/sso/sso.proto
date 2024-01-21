@@ -37,19 +37,19 @@ message SendOTPRequest {
 }
 message SendOTPResponse{
   bool ok = 1;
-  string token = 2;
+  string code = 2;
   string message = 3;
 }
 
 message OTPConfirmationRequest{
   string phone = 1;
-  string otp = 2;
-  string token = 3;
+  string code = 2;
 }
 
 message OTPConfirmationResponse{
   bool ok = 1;
-  string token = 2;
+  string message = 2;
+  string token = 3;
 }
 
 message ResetPasswordRequest{

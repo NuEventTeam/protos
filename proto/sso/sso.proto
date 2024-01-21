@@ -53,8 +53,9 @@ message OTPConfirmationResponse{
 }
 
 message ResetPasswordRequest{
-  string token = 1;
-  string password = 2;
+  string phone = 1;
+  string token = 2;
+  string password = 3;
 }
 
 message ResetPasswordResponse{

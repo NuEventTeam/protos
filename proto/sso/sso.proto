@@ -63,6 +63,24 @@ message ResetPasswordResponse{
  string message = 2;
 }
 
+message RefreshRequest{
+  string token = 1;
+}
+
+message  RefreshResponse{
+  bool ok = 1;
+  string message = 2;
+  string token = 3;
+}
+
+message LogoutRequest{
+  string token = 1;
+}
+
+message LogoutResponse{
+  bool ok = 1;
+  string message =2;
+}
 
 
 
@@ -73,6 +91,8 @@ service Auth {
   rpc SendOTP(SendOTPRequest) returns (SendOTPResponse);
   rpc ConfirmOTP(OTPConfirmationRequest) returns (OTPConfirmationResponse);
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse);
+  rpc Refresh(RefreshRequest) returns(RefreshResponse);
+  rpc Logout(LogoutRequest) returns(LogoutResponse);
 }
 
 

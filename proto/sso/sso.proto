@@ -34,6 +34,7 @@ message LoginResponse {
 
 message SendOTPRequest {
   string phone = 1;
+  int32 otpType = 2;
 }
 message SendOTPResponse{
   bool ok = 1;
@@ -44,6 +45,7 @@ message SendOTPResponse{
 message OTPConfirmationRequest{
   string phone = 1;
   string code = 2;
+  string otpType = 3;
 }
 
 message OTPConfirmationResponse{

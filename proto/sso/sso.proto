@@ -45,7 +45,7 @@ message SendOTPResponse{
 message OTPConfirmationRequest{
   string phone = 1;
   string code = 2;
-  string otpType = 3;
+  int32 otpType = 3;
 }
 
 message OTPConfirmationResponse{

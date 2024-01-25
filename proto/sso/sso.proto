@@ -14,8 +14,6 @@ message RegisterRequest {
   string password = 2;
   string app_id = 3;
   string token = 4;
-  string firstname = 5;
-  string lastname = 6;
 }
 
 message RegisterResponse {

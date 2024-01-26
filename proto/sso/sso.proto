@@ -28,7 +28,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  bool ok =1;
+  bool ok = 1;
   string message =2;
   Token token = 3;
   int64 userID = 4;
@@ -61,6 +61,7 @@ message ResetPasswordRequest{
   string token = 2;
   string oldPassword = 3;
   string newPassword = 4;
+  int64 user_id = 5;
 }
 
 message ResetPasswordResponse{

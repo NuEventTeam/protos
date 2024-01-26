@@ -57,11 +57,10 @@ message OTPConfirmationResponse{
 }
 
 message ResetPasswordRequest{
-  string phone = 1;
-  string token = 2;
-  string oldPassword = 3;
-  string newPassword = 4;
-  int64 user_id = 5;
+  string token = 1;
+  string oldPassword = 2;
+  string newPassword = 3;
+  int64 user_id = 4;
 }
 
 message ResetPasswordResponse{
@@ -81,7 +80,7 @@ message  RefreshResponse{
 }
 
 message LogoutRequest{
-  int64 user_id = 2;
+  int64 user_id = 1;
 }
 
 message LogoutResponse{

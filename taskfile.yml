@@ -8,5 +8,11 @@ tasks:
     cmds:
       - protoc -I proto proto/sso/sso.proto --go_out=./gen/go --go_opt=paths=source_relative
       - protoc -I proto proto/sso/sso.proto --go-grpc_out=./gen/go --go-grpc_opt=paths=source_relative
+      - protoc -I proto proto/event/user.proto --go_out=./gen/go --go_opt=paths=source_relative
+      - protoc -I proto proto/event/user.proto --go-grpc_out=./gen/go --go-grpc_opt=paths=source_relative
+      - protoc -I proto proto/event/event.proto --go_out=./gen/go --go_opt=paths=source_relative
+      - protoc -I proto proto/event/event.proto --go-grpc_out=./gen/go --go-grpc_opt=paths=source_relative
+      - protoc -I proto proto/event/categories.proto --go_out=./gen/go --go_opt=paths=source_relative
+      - protoc -I proto proto/event/categories.proto --go-grpc_out=./gen/go --go-grpc_opt=paths=source_relative
 
 

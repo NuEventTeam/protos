@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package event;
+
+option go_package = "binsabit.event.v1;event";
+
+message Category{
+  int64 id = 1;
+  string name = 2;
+}
+
+message Sort{
+  int32 order = 1;
+  string field = 2;
+}
+
+message GetCategoriesRequest{
+  repeated Sort sort = 1;
+  optional string title = 2;
+  int32 page = 3;
+  int32 perPage = 4;
+  optional int32 search = 5;
+}
+
+message GetCategoriesResponse{
+  repeated Category categories = 1;
+  bool ok = 2;
+  string message = 3;
+}
+
+service CategoriesService{
+  rpc GetCategories(GetCategoriesRequest)returns(GetCategoriesResponse);
+}

@@ -58,7 +58,6 @@ message OTPConfirmationResponse{
 
 message ResetPasswordRequest{
   string token = 1;
-  string oldPassword = 2;
   string newPassword = 3;
   int64 user_id = 4;
 }

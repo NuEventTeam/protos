@@ -68,7 +68,6 @@ message ResetPasswordResponse{
 }
 
 message RefreshRequest{
-  int64 user_id = 1;
   string token = 2;
 }
 

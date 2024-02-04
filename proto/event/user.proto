@@ -3,6 +3,7 @@ syntax = "proto3";
 
 package event;
 
+import "event/categories.proto";
 option go_package = "binsabit.event.v1;event";
 
 
@@ -16,6 +17,7 @@ message User{
 
 message CreateUserRequest{
   User user = 1;
+  repeated Category categories = 2;
 }
 
 message CreateUserResponse{

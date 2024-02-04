@@ -13,6 +13,8 @@ message User{
   optional string profileImage = 3;
   int64 birthDate = 4;
   string phone = 5;
+  string Firstname = 6;
+  optional string Lastname = 7;
 }
 
 message CreateUserRequest{

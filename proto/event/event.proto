@@ -3,7 +3,6 @@ syntax = "proto3";
 package event;
 
 import "event/categories.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "binsabit.event.v1;event";
 
@@ -14,8 +13,8 @@ message Location{
   float longitude = 4;
   float latitude = 5;
   optional int64 seats = 6;
-  google.protobuf.Timestamp startAt = 7;
-  google.protobuf.Timestamp endAt = 8;
+  int64 startAt = 7;
+  int64 endAt = 8;
 }
 
 message Managers{

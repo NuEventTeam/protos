@@ -47,6 +47,7 @@ message CreateEventRequest{
 message CreateEventResponse{
   bool ok =1;
   string message=2;
+  int64 eventID = 3;
 }
 
 

@@ -20,6 +20,7 @@ message Location{
 message Managers{
   int64 userID = 1;
   int64 roleID = 2;
+  string title = 3;
 }
 
 message Image{

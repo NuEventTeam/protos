@@ -13,8 +13,8 @@ message Location{
   float longitude = 4;
   float latitude = 5;
   optional int64 seats = 6;
-  int64 startAt = 7;
-  int64 endAt = 8;
+  string startAt = 7;
+  string endAt = 8;
 }
 
 message Managers{

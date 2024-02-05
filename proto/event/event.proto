@@ -50,9 +50,21 @@ message CreateEventResponse{
   int64 eventID = 3;
 }
 
+message GetEventByIDRequest{
+  int64 eventID =1 ;
+}
+
+message GetEventByIDResponse{
+  Event event =1;
+  bool ok =2;
+  string message =3;
+}
+
+
 
 service EventService{
   rpc CreateEvent(CreateEventRequest)returns(CreateEventResponse);
+  rpc GetEventByID(GetEventByIDRequest)returns(GetEventByIDResponse);
 }
 
 

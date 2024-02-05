@@ -30,7 +30,7 @@ message Image{
 message Event {
   int64 ID = 1;
   string title =2;
-  string describe =3;
+  string description =3;
   optional int64 ageMax=4;
   optional int64  ageMin=5;
   repeated Location locations = 6;

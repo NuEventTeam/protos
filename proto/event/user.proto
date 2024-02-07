@@ -68,11 +68,17 @@ message EditUserProfileResponse{
   string message = 2;
 }
 
+
+
+message GetUserRequest{
+  string username =1;
+}
 service UserService{
   rpc CreateUser(CreateUserRequest)returns(CreateUserResponse);
   rpc CheckUsername(CheckUsernameRequest)returns(CheckUsernameResponse);
   rpc AddUserPreferences(AddUserPreferencesRequest)returns(AddUserPreferencesResponse);
   rpc RemoveUserPreferences(RemoveUserPreferencesRequest)returns(RemoveUserPreferencesResponse);
   rpc EditUserProfile(EditUserProfileRequest)returns(EditUserProfileResponse);
+  rpc GetUser(GetUserRequest)returns(User);
 };
 

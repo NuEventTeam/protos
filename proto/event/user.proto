@@ -10,8 +10,8 @@ option go_package = "binsabit.event.v1;event";
 message User{
   int64 userID = 1;
   string username = 2;
-  optional string profileImage = 3;
-  string birthDate = 4;
+  optional string profileImage = 3  [json_name = "profile_image"];
+  string birthDate = 4 [json_name = "birth_date"];
   string phone = 5;
   string firstname = 6;
   optional string lastname = 7;

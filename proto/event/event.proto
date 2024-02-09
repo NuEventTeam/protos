@@ -34,7 +34,7 @@ message Event {
   optional int64 ageMax=4;
   optional int64  ageMin=5;
   repeated Location locations = 6;
-  repeated int64 author = 7;
+  int64 author = 7;
   repeated int64 categories = 8;
   repeated string images = 9;
 }

@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package event;
 
-import "event/categories.proto";
 
 option go_package = "binsabit.event.v1;event";
 
@@ -35,9 +34,9 @@ message Event {
   optional int64 ageMax=4;
   optional int64  ageMin=5;
   repeated Location locations = 6;
-  repeated Managers managers = 7;
-  repeated Category categories = 8;
-  repeated Image images = 9;
+  repeated int64 author = 7;
+  repeated int64 categories = 8;
+  repeated string images = 9;
 }
 
 message CreateEventRequest{

@@ -29,7 +29,7 @@ message Image{
 }
 
 message Event {
-  int64 ID = 1;
+  int64 id = 1;
   string title =2;
   string description =3;
   optional int64 ageMax=4;
@@ -41,7 +41,7 @@ message Event {
 }
 
 message CreateEventRequest{
-  int64 ID = 1;
+  int64 id = 1;
   string title =2;
   string description =3;
   optional int64 ageMax=4;

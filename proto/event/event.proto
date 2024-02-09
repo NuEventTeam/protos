@@ -17,10 +17,20 @@ message Location{
   string endAt = 8;
 }
 
+message Permission{
+  int64 id =1 ;
+  string name =2;
+}
+
+message Role {
+  int64 id=1;
+  string name =2;
+  repeated Permission permissions = 3;
+}
+
 message Managers{
   int64 userID = 1;
-  int64 roleID = 2;
-  string title = 3;
+  Role role = 2;
 }
 
 message Image{
